@@ -20,7 +20,6 @@ repositories {
   jcenter()
 }
 
-archivesBaseName = "mechjack-${project.name}"
 group = 'tv.mechjack'
 version = System.getenv("BUILDVER") != null ? System.getenv("BUILDVER") : "DEVELOP+${System.getProperty("user.name")}.${System.currentTimeMillis()}"
 
