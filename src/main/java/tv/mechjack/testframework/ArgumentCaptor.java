@@ -1,18 +1,15 @@
-package tv.mechjack.testframework.fake.methodhandler;
+package tv.mechjack.testframework;
 
-import tv.mechjack.testframework.fake.Invocation;
-import tv.mechjack.testframework.fake.MethodInvocationHandler;
-
-public class CapturingMethodInvocationHandler extends MethodInvocationHandlerDecorator {
+public class ArgumentCaptor extends ChainingMethodInvocationHandler {
 
   private final int index;
   private Object value;
 
-  public CapturingMethodInvocationHandler(final int index) {
+  public ArgumentCaptor(final int index) {
     this(index, null);
   }
 
-  public CapturingMethodInvocationHandler(final int index, final MethodInvocationHandler nextHandler) {
+  public ArgumentCaptor(final int index, final MethodInvocationHandler nextHandler) {
     super(nextHandler);
     this.index = index;
     this.value = null;

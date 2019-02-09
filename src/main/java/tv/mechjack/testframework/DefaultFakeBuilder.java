@@ -1,10 +1,10 @@
-package tv.mechjack.testframework.fake;
+package tv.mechjack.testframework;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DefaultFakeBuilder<T> implements FakeBuilder<T> {
+class DefaultFakeBuilder<T> implements FakeBuilder<T> {
 
   private final FakeFactory fakeFactory;
   private final Class<T> type;

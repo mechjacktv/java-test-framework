@@ -1,20 +1,17 @@
-package tv.mechjack.testframework.fake.methodhandler;
+package tv.mechjack.testframework;
 
 import java.util.function.Function;
 
-import tv.mechjack.testframework.fake.Invocation;
-import tv.mechjack.testframework.fake.MethodInvocationHandler;
-
-public class ValidatingMethodInvocationHandler extends MethodInvocationHandlerDecorator {
+public class ArgumentValidator extends ChainingMethodInvocationHandler {
 
   private final Function<Invocation, Boolean> validator;
   private boolean valid;
 
-  public ValidatingMethodInvocationHandler(final Function<Invocation, Boolean> validator) {
+  public ArgumentValidator(final Function<Invocation, Boolean> validator) {
     this(validator, null);
   }
 
-  public ValidatingMethodInvocationHandler(final Function<Invocation, Boolean> validator,
+  public ArgumentValidator(final Function<Invocation, Boolean> validator,
       final MethodInvocationHandler invocationHandler) {
     super(invocationHandler);
     this.validator = validator;

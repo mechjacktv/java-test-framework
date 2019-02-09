@@ -1,9 +1,9 @@
-package tv.mechjack.testframework.fake;
+package tv.mechjack.testframework;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
-public class DefaultFakeFactory implements FakeFactory {
+class DefaultFakeFactory implements FakeFactory {
 
   @Override
   public <T> FakeBuilder<T> builder(final Class<T> type) {

@@ -1,4 +1,4 @@
-package tv.mechjack.testframework.fake;
+package tv.mechjack.testframework;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

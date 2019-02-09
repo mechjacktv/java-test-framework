@@ -1,19 +1,16 @@
-package tv.mechjack.testframework.fake.methodhandler;
+package tv.mechjack.testframework;
 
 import java.util.Objects;
 
-import tv.mechjack.testframework.fake.Invocation;
-import tv.mechjack.testframework.fake.MethodInvocationHandler;
-
-public abstract class MethodInvocationHandlerDecorator implements MethodInvocationHandler {
+abstract class ChainingMethodInvocationHandler implements MethodInvocationHandler {
 
   private final MethodInvocationHandler nextHandler;
 
-  public MethodInvocationHandlerDecorator() {
+  public ChainingMethodInvocationHandler() {
     this(null);
   }
 
-  public MethodInvocationHandlerDecorator(final MethodInvocationHandler nextHandler) {
+  public ChainingMethodInvocationHandler(final MethodInvocationHandler nextHandler) {
     this.nextHandler = nextHandler;
   }
 

@@ -1,4 +1,4 @@
-package tv.mechjack.testframework.fake;
+package tv.mechjack.testframework;
 
 public interface MethodInvocationHandler {
 

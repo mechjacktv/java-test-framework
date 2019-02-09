@@ -13,9 +13,6 @@ import com.google.inject.Provider;
 
 import org.junit.rules.ExternalResource;
 
-import tv.mechjack.testframework.fake.FakeBuilder;
-import tv.mechjack.testframework.fake.FakeFactory;
-
 public final class TestFrameworkRule extends ExternalResource {
 
   public static final int ARBITRARY_COLLECTION_SIZE = 10;

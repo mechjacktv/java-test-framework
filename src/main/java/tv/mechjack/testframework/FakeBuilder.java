@@ -1,4 +1,4 @@
-package tv.mechjack.testframework.fake;
+package tv.mechjack.testframework;
 
 import java.lang.reflect.Method;
 
@@ -9,11 +9,5 @@ public interface FakeBuilder<T> {
   MethodHandlerBuilder<T> forMethod(Method method);
 
   T build();
-
-  interface MethodHandlerBuilder<T> {
-
-    FakeBuilder<T> addHandler(MethodInvocationHandler handler);
-
-  }
 
 }
