@@ -1,6 +1,20 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'ch.raffael.markdown-doclet:markdown-doclet:1.4'
+    classpath 'com.diffplug.spotless:spotless-plugin-gradle:3.16.0'
+  }
+}
+
 plugins {
+  id 'idea'
+  id 'jacoco'
   id 'java-library'
 }
+apply plugin: 'ch.raffael.markdown-doclet'
+apply plugin: 'com.diffplug.gradle.spotless'
 
 repositories {
   jcenter()
@@ -9,6 +23,27 @@ repositories {
 archivesBaseName = "mechjack-${project.name}"
 group = 'tv.mechjack'
 version = System.getenv("BUILDVER") != null ? System.getenv("BUILDVER") : "DEVELOP+${System.getProperty("user.name")}.${System.currentTimeMillis()}"
+
+// jacocoTestReport {
+// }
+check.dependsOn 'jacocoTestReport'
+
+spotless {
+  java {
+    importOrder 'java', 'javax', 'com', 'org', '', 'tv.mechjack'
+    eclipse().configFile rootProject.file('src/buildscript/eclipse_java_formatter_rules.xml')
+    removeUnusedImports()
+    trimTrailingWhitespace()
+    endWithNewline()
+  }
+  format 'misc', {
+    target '**/*.gradle', '**/*.md', '**/.gitignore', '**/*.proto'
+    trimTrailingWhitespace()
+    indentWithSpaces(2)
+    endWithNewline()
+  }
+}
+compileJava.dependsOn 'spotlessApply'
 
 dependencies {
   implementation group: 'com.google.inject', name: 'guice', version: '4.+'
