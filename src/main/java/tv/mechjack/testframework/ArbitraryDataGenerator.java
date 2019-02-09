@@ -10,8 +10,24 @@ public final class ArbitraryDataGenerator {
     this.atomicLong = new AtomicLong(1);
   }
 
+  public final byte getByte() {
+    return (byte) this.getLong();
+  }
+
   public final byte[] getByteArray() {
     return this.getString().getBytes();
+  }
+
+  public final char getCharacter() {
+    return (char) this.getLong();
+  }
+
+  public final double getDouble() {
+    return (double) this.getLong();
+  }
+
+  public final float getFloat() {
+    return (float) this.getLong();
   }
 
   public final int getInteger() {
@@ -20,6 +36,10 @@ public final class ArbitraryDataGenerator {
 
   public final long getLong() {
     return this.atomicLong.getAndIncrement();
+  }
+
+  public final short getShort() {
+    return (short) this.getLong();
   }
 
   public final String getString() {
