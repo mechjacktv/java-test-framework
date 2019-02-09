@@ -1,6 +1,6 @@
 package tv.mechjack.testframework;
 
-public interface MethodHandlerBuilder<T> {
+public interface MethodInvocationBuilder<T> {
 
   FakeBuilder<T> addHandler(MethodInvocationHandler handler);
 

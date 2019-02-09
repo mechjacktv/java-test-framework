@@ -17,7 +17,7 @@ class DefaultFakeBuilder<T> implements FakeBuilder<T> {
   }
 
   @Override
-  public MethodHandlerBuilder<T> forMethod(final String methodName, final Class<?>... parameterTypes) {
+  public MethodInvocationBuilder<T> forMethod(final String methodName, final Class<?>... parameterTypes) {
     try {
       return this.forMethod(type.getMethod(methodName, parameterTypes));
     } catch (NoSuchMethodException e) {
@@ -26,8 +26,8 @@ class DefaultFakeBuilder<T> implements FakeBuilder<T> {
   }
 
   @Override
-  public MethodHandlerBuilder<T> forMethod(final Method method) {
-    return new DefaultMethodHandlerBuilder<>(this, method);
+  public MethodInvocationBuilder<T> forMethod(final Method method) {
+    return new DefaultMethodInvocationBuilder<>(this, method);
   }
 
   private FakeBuilder<T> addMethodHandler(final Method method, final MethodInvocationHandler methodHandler) {
@@ -45,12 +45,12 @@ class DefaultFakeBuilder<T> implements FakeBuilder<T> {
     return this.fakeFactory.fake(this.type, instanceInvocationHandler);
   }
 
-  private static final class DefaultMethodHandlerBuilder<T> implements MethodHandlerBuilder<T> {
+  private static final class DefaultMethodInvocationBuilder<T> implements MethodInvocationBuilder<T> {
 
     private final DefaultFakeBuilder<T> fakeBuilder;
     private final Method method;
 
-    DefaultMethodHandlerBuilder(final DefaultFakeBuilder<T> fakeBuilder, final Method method) {
+    DefaultMethodInvocationBuilder(final DefaultFakeBuilder<T> fakeBuilder, final Method method) {
       this.fakeBuilder = fakeBuilder;
       this.method = method;
     }
