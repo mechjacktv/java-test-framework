@@ -25,7 +25,7 @@ public final class TestFrameworkModule extends AbstractModule {
     this.bind(FakeFactory.class).to(DefaultFakeFactory.class);
     this.bind(TestRandom.class).toInstance(this.testRandom);
 
-    OptionalBinder.newOptionalBinder(this.binder(), NullMessageForNameFactory.class);
+    OptionalBinder.newOptionalBinder(this.binder(), NullPointerExceptionMessageFactory.class);
   }
 
 }
