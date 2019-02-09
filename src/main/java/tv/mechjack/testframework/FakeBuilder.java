@@ -20,7 +20,8 @@ public interface FakeBuilder<T> {
    * @return a `MethodInvocationBuilder` used to register a
    * `MethodInvocationHandler`
    */
-  MethodInvocationBuilder<T> forMethod(String methodName, Class<?>... parameterTypes);
+  MethodInvocationBuilder<T> forMethod(String methodName,
+      Class<?>... parameterTypes);
 
   /**
    * Returns a `MethodInvocationBuilder` which is used to register a

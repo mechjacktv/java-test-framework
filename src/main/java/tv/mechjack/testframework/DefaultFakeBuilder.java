@@ -17,7 +17,8 @@ class DefaultFakeBuilder<T> implements FakeBuilder<T> {
   }
 
   @Override
-  public MethodInvocationBuilder<T> forMethod(final String methodName, final Class<?>... parameterTypes) {
+  public MethodInvocationBuilder<T> forMethod(final String methodName,
+      final Class<?>... parameterTypes) {
     try {
       return this.forMethod(type.getMethod(methodName, parameterTypes));
     } catch (NoSuchMethodException e) {
@@ -30,33 +31,38 @@ class DefaultFakeBuilder<T> implements FakeBuilder<T> {
     return new DefaultMethodInvocationBuilder<>(this, method);
   }
 
-  private FakeBuilder<T> addMethodHandler(final Method method, final MethodInvocationHandler methodHandler) {
-    this.methodHandlers.put(method, methodHandler);
-    return this;
-  }
-
   @Override
   public T build() {
     final InstanceInvocationHandler instanceInvocationHandler = new InstanceInvocationHandler();
 
     for (final Method method : this.methodHandlers.keySet()) {
-      instanceInvocationHandler.addHandler(method, this.methodHandlers.get(method));
+      instanceInvocationHandler
+          .addHandler(method, this.methodHandlers.get(method));
     }
     return this.fakeFactory.fake(this.type, instanceInvocationHandler);
   }
 
-  private static final class DefaultMethodInvocationBuilder<T> implements MethodInvocationBuilder<T> {
+  private FakeBuilder<T> addMethodHandler(final Method method,
+      final MethodInvocationHandler methodHandler) {
+    this.methodHandlers.put(method, methodHandler);
+    return this;
+  }
+
+  private static final class DefaultMethodInvocationBuilder<T>
+      implements MethodInvocationBuilder<T> {
 
     private final DefaultFakeBuilder<T> fakeBuilder;
     private final Method method;
 
-    DefaultMethodInvocationBuilder(final DefaultFakeBuilder<T> fakeBuilder, final Method method) {
+    DefaultMethodInvocationBuilder(final DefaultFakeBuilder<T> fakeBuilder,
+        final Method method) {
       this.fakeBuilder = fakeBuilder;
       this.method = method;
     }
 
     @Override
-    public FakeBuilder<T> setMethodInvocationHandler(final MethodInvocationHandler handler) {
+    public FakeBuilder<T> setMethodInvocationHandler(
+        final MethodInvocationHandler handler) {
       return this.fakeBuilder.addMethodHandler(this.method, handler);
     }
 

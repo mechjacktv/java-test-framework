@@ -8,7 +8,8 @@ class DefaultInvocationContext implements InvocationContext {
   private final Method method;
   private final Object[] arguments;
 
-  public DefaultInvocationContext(final Object fake, final Method method, final Object[] arguments) {
+  public DefaultInvocationContext(final Object fake, final Method method,
+      final Object[] arguments) {
     this.fake = fake;
     this.method = method;
     this.arguments = arguments;

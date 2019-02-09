@@ -26,7 +26,8 @@ public final class ArgumentCaptor extends ChainingMethodInvocationHandler {
    * @param index the argument index
    * @param nextHandler the next `MethodInvocationHandler` called
    */
-  public ArgumentCaptor(final int index, final MethodInvocationHandler nextHandler) {
+  public ArgumentCaptor(final int index,
+      final MethodInvocationHandler nextHandler) {
     super(nextHandler);
     this.index = index;
     this.value = null;

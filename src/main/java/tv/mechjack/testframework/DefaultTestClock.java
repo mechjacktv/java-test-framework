@@ -4,11 +4,6 @@ final class DefaultTestClock implements TestClock {
 
   private Long currentTime = 0L;
 
-  DefaultTestClock() {
-    // making constructor package private
-    super();
-  }
-
   @Override
   public final Long currentTime() {
     return this.currentTime;

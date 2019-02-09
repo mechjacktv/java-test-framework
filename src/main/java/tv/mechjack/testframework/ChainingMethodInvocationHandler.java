@@ -5,7 +5,8 @@ import java.util.Objects;
 /**
  * Base class that can be extended to chain `MethodInvocationHandler`s together.
  */
-public abstract class ChainingMethodInvocationHandler implements MethodInvocationHandler {
+public abstract class ChainingMethodInvocationHandler
+    implements MethodInvocationHandler {
 
   private final MethodInvocationHandler nextHandler;
 
@@ -23,7 +24,8 @@ public abstract class ChainingMethodInvocationHandler implements MethodInvocatio
    *
    * @param nextHandler the next `MethodInvocationHandler` in the chain
    */
-  public ChainingMethodInvocationHandler(final MethodInvocationHandler nextHandler) {
+  public ChainingMethodInvocationHandler(
+      final MethodInvocationHandler nextHandler) {
     this.nextHandler = nextHandler;
   }
 
@@ -38,7 +40,8 @@ public abstract class ChainingMethodInvocationHandler implements MethodInvocatio
    * `MethodInvocationHandler` throws an exception
    */
   @Override
-  public final Object apply(final InvocationContext invocationContext) throws Throwable {
+  public final Object apply(final InvocationContext invocationContext)
+      throws Throwable {
     final boolean callNext = execute(invocationContext);
 
     if (callNext && Objects.nonNull(this.nextHandler)) {
@@ -56,6 +59,7 @@ public abstract class ChainingMethodInvocationHandler implements MethodInvocatio
    * @return a `boolean` indicating if the method invocation should be forwarded
    * @throws Throwable the implementation may optionally throw an exception
    */
-  protected abstract boolean execute(final InvocationContext invocationContext) throws Throwable;
+  protected abstract boolean execute(final InvocationContext invocationContext)
+      throws Throwable;
 
 }

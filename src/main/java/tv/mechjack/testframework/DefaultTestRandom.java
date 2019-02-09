@@ -25,7 +25,9 @@ final class DefaultTestRandom implements TestRandom {
   @Override
   public boolean nextBoolean() {
     if (nextBooleanIndex.get() >= nextBooleans.size()) {
-      throw new IllegalStateException(String.format("Boolean for index '%d' was not set.", nextBooleanIndex.get()));
+      throw new IllegalStateException(
+          String.format("Boolean for index '%d' was not set.",
+              nextBooleanIndex.get()));
     }
     return nextBooleans.get(nextBooleanIndex.getAndIncrement());
   }
@@ -33,7 +35,9 @@ final class DefaultTestRandom implements TestRandom {
   @Override
   public byte nextByte() {
     if (nextByteIndex.get() >= nextBytes.size()) {
-      throw new IllegalStateException(String.format("Byte for index '%d' was not set.", nextByteIndex.get()));
+      throw new IllegalStateException(
+          String.format("Byte for index '%d' was not set.",
+              nextByteIndex.get()));
     }
     return nextBytes.get(nextByteIndex.getAndIncrement());
   }
@@ -41,7 +45,9 @@ final class DefaultTestRandom implements TestRandom {
   @Override
   public byte[] nextByteArray() {
     if (nextByteArrayIndex.get() >= nextByteArrays.size()) {
-      throw new IllegalStateException(String.format("ByteArray for index '%d' was not set.", nextByteArrayIndex.get()));
+      throw new IllegalStateException(
+          String.format("ByteArray for index '%d' was not set.",
+              nextByteArrayIndex.get()));
     }
     return nextByteArrays.get(nextByteArrayIndex.getAndIncrement());
   }
@@ -49,7 +55,9 @@ final class DefaultTestRandom implements TestRandom {
   @Override
   public double nextDouble() {
     if (nextDoubleIndex.get() >= nextDoubles.size()) {
-      throw new IllegalStateException(String.format("Double for index '%d' was not set.", nextDoubleIndex.get()));
+      throw new IllegalStateException(
+          String.format("Double for index '%d' was not set.",
+              nextDoubleIndex.get()));
     }
     return nextDoubles.get(nextDoubleIndex.getAndIncrement());
   }
@@ -57,7 +65,9 @@ final class DefaultTestRandom implements TestRandom {
   @Override
   public float nextFloat() {
     if (nextFloatIndex.get() >= nextFloats.size()) {
-      throw new IllegalStateException(String.format("Float for index '%d' was not set.", nextFloatIndex.get()));
+      throw new IllegalStateException(
+          String.format("Float for index '%d' was not set.",
+              nextFloatIndex.get()));
     }
     return nextFloats.get(nextFloatIndex.getAndIncrement());
   }
@@ -65,7 +75,9 @@ final class DefaultTestRandom implements TestRandom {
   @Override
   public int nextInteger() {
     if (nextIntegerIndex.get() >= nextIntegers.size()) {
-      throw new IllegalStateException(String.format("Integer for index '%d' was not set.", nextIntegerIndex.get()));
+      throw new IllegalStateException(
+          String.format("Integer for index '%d' was not set.",
+              nextIntegerIndex.get()));
     }
     return nextIntegers.get(nextIntegerIndex.getAndIncrement());
   }
@@ -73,7 +85,9 @@ final class DefaultTestRandom implements TestRandom {
   @Override
   public long nextLong() {
     if (nextLongIndex.get() >= nextLongs.size()) {
-      throw new IllegalStateException(String.format("Long for index '%d' was not set.", nextLongIndex.get()));
+      throw new IllegalStateException(
+          String.format("Long for index '%d' was not set.",
+              nextLongIndex.get()));
     }
     return nextLongs.get(nextLongIndex.getAndIncrement());
   }

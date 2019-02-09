@@ -19,7 +19,8 @@ public final class ArgumentValidator extends ChainingMethodInvocationHandler {
    *
    * @param validator the validation function
    */
-  public ArgumentValidator(final Function<InvocationContext, Boolean> validator) {
+  public ArgumentValidator(
+      final Function<InvocationContext, Boolean> validator) {
     this(validator, null);
   }
 

@@ -15,7 +15,8 @@ class DefaultFakeFactory implements FakeFactory {
   }
 
   public final <T> T fake(Class<T> type, final InvocationHandler handler) {
-    return type.cast(Proxy.newProxyInstance(this.getClass().getClassLoader(), new Class[] { type }, handler));
+    return type.cast(Proxy.newProxyInstance(this.getClass().getClassLoader(),
+        new Class[] { type }, handler));
   }
 
 }

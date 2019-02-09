@@ -27,7 +27,8 @@ public final class TestFrameworkRule extends ExternalResource {
     this.modules.clear();
     this.testClock.reset();
     this.testRandom.reset();
-    this.installModule(new TestFrameworkModule(this.testClock, this.testRandom));
+    this.installModule(
+        new TestFrameworkModule(this.testClock, this.testRandom));
   }
 
   @Override
@@ -35,15 +36,33 @@ public final class TestFrameworkRule extends ExternalResource {
     this.injector = null;
   }
 
-  public final void assertNullPointerException(final Throwable thrown, final String name) {
-    this.getInstance(AssertionUtils.class).assertNullPointerException(thrown, name);
+  public final void installModule(final Module module) {
+    this.modules.add(module);
+  }
+
+  public final void assertNullPointerException(final Throwable thrown,
+      final String name) {
+    this.getInstance(AssertionUtils.class)
+        .assertNullPointerException(thrown, name);
+  }
+
+  public final <T> T getInstance(final Class<T> type) {
+    return this.getInjector().getInstance(type);
+  }
+
+  private Injector getInjector() {
+    if (this.injector == null) {
+      this.injector = Guice.createInjector(this.modules);
+    }
+    return this.injector;
   }
 
   public final void currentTimeDelta(final long delta, final TimeUnit unit) {
     this.currentTimeDelta(delta, unit, 0);
   }
 
-  public final void currentTimeDelta(final long delta, final TimeUnit unit, final long shift) {
+  public final void currentTimeDelta(final long delta, final TimeUnit unit,
+      final long shift) {
     this.testClock.currentTimeDelta(unit.toMillis(delta) + shift);
   }
 
@@ -75,10 +94,6 @@ public final class TestFrameworkRule extends ExternalResource {
     return this.getInstance(ArbitraryDataGenerator.class).getString();
   }
 
-  public final <T> T getInstance(final Class<T> type) {
-    return this.getInjector().getInstance(type);
-  }
-
   public final <T> T getInstance(final Key<T> type) {
     return this.getInjector().getInstance(type);
   }
@@ -89,17 +104,6 @@ public final class TestFrameworkRule extends ExternalResource {
 
   public final <T> Provider<T> getProvider(final Key<T> type) {
     return this.getInjector().getProvider(type);
-  }
-
-  private Injector getInjector() {
-    if (this.injector == null) {
-      this.injector = Guice.createInjector(this.modules);
-    }
-    return this.injector;
-  }
-
-  public final void installModule(final Module module) {
-    this.modules.add(module);
   }
 
   public final void nextRandomValue(final Long nextValue) {

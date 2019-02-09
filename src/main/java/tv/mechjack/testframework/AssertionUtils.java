@@ -9,7 +9,7 @@ import org.assertj.core.api.SoftAssertions;
 
 /**
  * A utility class that wraps common AssertJ assertion patterns.
- *
+ * <p>
  * This class is available to be injected via Guice or through the
  * `TestFrameworkRule`.
  */
@@ -18,7 +18,8 @@ public final class AssertionUtils {
   private final Optional<NullPointerExceptionMessageFactory> nullMessageForNameFactory;
 
   @Inject
-  AssertionUtils(final Optional<NullPointerExceptionMessageFactory> nullMessageForNameFactory) {
+  AssertionUtils(
+      final Optional<NullPointerExceptionMessageFactory> nullMessageForNameFactory) {
     this.nullMessageForNameFactory = nullMessageForNameFactory;
   }
 
@@ -41,7 +42,8 @@ public final class AssertionUtils {
    * @param thrown the `Throwable` to check
    * @param name field name included in the message
    */
-  public final void assertNullPointerException(final Throwable thrown, final String name) {
+  public final void assertNullPointerException(final Throwable thrown,
+      final String name) {
     final SoftAssertions softly = new SoftAssertions();
 
     softly.assertThat(thrown).isInstanceOf(NullPointerException.class);

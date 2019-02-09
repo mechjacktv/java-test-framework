@@ -23,18 +23,34 @@ public final class ArbitraryDataGeneratorUnitTests {
     this.assertThatValuesAreUnique(subjectUnderTest::getByte, Byte::equals);
   }
 
+  private <T> void assertThatValuesAreUnique(final Supplier<T> supplier,
+      final Comparator<T> comparator) {
+    final List<T> pastResults = new ArrayList<>();
+
+    for (int i = 0; i < VALUES_TO_COMPARE; i++) {
+      final T result = supplier.get();
+
+      for (final T pastResult : pastResults) {
+        softly.assertThat(comparator.equals(pastResult, result)).isFalse();
+      }
+      pastResults.add(result);
+    }
+  }
+
   @Test
   public final void getByteArray_whenCalledMultipleTimes_resultIsUniqueValues() {
     final ArbitraryDataGenerator subjectUnderTest = new ArbitraryDataGenerator();
 
-    this.assertThatValuesAreUnique(subjectUnderTest::getByteArray, Arrays::equals);
+    this.assertThatValuesAreUnique(subjectUnderTest::getByteArray,
+        Arrays::equals);
   }
 
   @Test
   public final void getCharacter_whenCalledMultipleTimes_resultIsUniqueValues() {
     final ArbitraryDataGenerator subjectUnderTest = new ArbitraryDataGenerator();
 
-    this.assertThatValuesAreUnique(subjectUnderTest::getCharacter, Character::equals);
+    this.assertThatValuesAreUnique(subjectUnderTest::getCharacter,
+        Character::equals);
   }
 
   @Test
@@ -55,7 +71,8 @@ public final class ArbitraryDataGeneratorUnitTests {
   public final void getInteger_whenCalledMultipleTimes_resultIsUniqueValues() {
     final ArbitraryDataGenerator subjectUnderTest = new ArbitraryDataGenerator();
 
-    this.assertThatValuesAreUnique(subjectUnderTest::getInteger, Integer::equals);
+    this.assertThatValuesAreUnique(subjectUnderTest::getInteger,
+        Integer::equals);
   }
 
   @Test
@@ -77,19 +94,6 @@ public final class ArbitraryDataGeneratorUnitTests {
     final ArbitraryDataGenerator subjectUnderTest = new ArbitraryDataGenerator();
 
     this.assertThatValuesAreUnique(subjectUnderTest::getString, String::equals);
-  }
-
-  private <T> void assertThatValuesAreUnique(final Supplier<T> supplier, final Comparator<T> comparator) {
-    final List<T> pastResults = new ArrayList<>();
-
-    for (int i = 0; i < VALUES_TO_COMPARE; i++) {
-      final T result = supplier.get();
-
-      for (final T pastResult : pastResults) {
-        softly.assertThat(comparator.equals(pastResult, result)).isFalse();
-      }
-      pastResults.add(result);
-    }
   }
 
   private interface Comparator<T> {
