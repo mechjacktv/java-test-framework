@@ -1,6 +1,6 @@
 package tv.mechjack.testframework;
 
-public final class DefaultTestClock implements TestClock {
+final class DefaultTestClock implements TestClock {
 
   private Long currentTime = 0L;
 

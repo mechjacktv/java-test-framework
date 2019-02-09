@@ -27,6 +27,10 @@ version = System.getenv("BUILDVER") != null ? System.getenv("BUILDVER") : "DEVEL
 // }
 check.dependsOn 'jacocoTestReport'
 
+javadoc {
+  title = "Java Test Framework ${project.version} API"
+}
+
 spotless {
   java {
     importOrder 'java', 'javax', 'com', 'org', '', 'tv.mechjack'
