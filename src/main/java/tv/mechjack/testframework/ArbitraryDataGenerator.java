@@ -3,8 +3,11 @@ package tv.mechjack.testframework;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * Unit tests often need values where the specifics don't matter. The
+ * A source of test data when the specific value doesn't matter. The
  * `ArbitraryDataGenerator` will generate values for your tests that are unique.
+ *
+ * This class is available to be injected via Guice or through the
+ * `TestFrameworkRule`.
  */
 public final class ArbitraryDataGenerator {
 

@@ -2,7 +2,7 @@ package tv.mechjack.testframework;
 
 import java.lang.reflect.Method;
 
-public interface Invocation {
+public interface InvocationContext {
 
   Object[] getArguments();
 

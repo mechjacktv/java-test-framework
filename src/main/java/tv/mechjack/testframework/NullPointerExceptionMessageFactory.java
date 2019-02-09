@@ -2,7 +2,7 @@ package tv.mechjack.testframework;
 
 /**
  * A callback interface for asserting the message supplied by
- * `NullPointerException`.
+ * `NullPointerException`s.
  */
 public interface NullPointerExceptionMessageFactory {
 

@@ -1,11 +1,11 @@
 package tv.mechjack.testframework;
 
 /**
- * Real random values and unit tests don't mix. Implementations that require
- * random values should abstract their access behind an interface that can be
- * faked during testing. A test implementation can wrap this class, which will
- * automatically be reset if the test class is also using the
- * `TestFrameworkRule`.
+ * A non-random source of "random" values used during unit testing. Real random
+ * values and unit tests don't mix. Implementations that require random values
+ * should abstract their access behind an interface that can be faked during
+ * testing. A test implementation can wrap this class, which will automatically
+ * be reset if the test class is also using the `TestFrameworkRule`.
  */
 public interface TestRandom {
 

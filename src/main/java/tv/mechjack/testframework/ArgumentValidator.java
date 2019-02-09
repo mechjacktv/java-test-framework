@@ -2,16 +2,28 @@ package tv.mechjack.testframework;
 
 import java.util.function.Function;
 
+/**
+ * Validates the arguments passed to the method invocation. The validator has
+ * the option to short-circuit passing the call on to the next
+ * `MethodInvocationHandler`.
+ */
 public class ArgumentValidator extends ChainingMethodInvocationHandler {
 
-  private final Function<Invocation, Boolean> validator;
+  private final Function<InvocationContext, Boolean> validator;
   private boolean valid;
 
-  public ArgumentValidator(final Function<Invocation, Boolean> validator) {
+  /**
+   * Constructs a new `ArgumentValidator` which passes the method invocation to
+   * the specified validator and only passes on to the next
+   * `MethodInvocationHandler` if, and only if, the validator returns `true`.
+   *
+   * @param validator the validation function
+   */
+  public ArgumentValidator(final Function<InvocationContext, Boolean> validator) {
     this(validator, null);
   }
 
-  public ArgumentValidator(final Function<Invocation, Boolean> validator,
+  public ArgumentValidator(final Function<InvocationContext, Boolean> validator,
       final MethodInvocationHandler invocationHandler) {
     super(invocationHandler);
     this.validator = validator;
@@ -19,8 +31,8 @@ public class ArgumentValidator extends ChainingMethodInvocationHandler {
   }
 
   @Override
-  protected boolean execute(final Invocation invocation) {
-    this.valid = this.validator.apply(invocation);
+  protected boolean execute(final InvocationContext invocationContext) {
+    this.valid = this.validator.apply(invocationContext);
     return this.valid;
   }
 

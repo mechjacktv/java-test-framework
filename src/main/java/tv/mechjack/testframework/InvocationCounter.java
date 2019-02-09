@@ -1,20 +1,20 @@
 package tv.mechjack.testframework;
 
-public class InvocationCounterChaining extends ChainingMethodInvocationHandler {
+public class InvocationCounter extends ChainingMethodInvocationHandler {
 
   private int callCount;
 
-  public InvocationCounterChaining() {
+  public InvocationCounter() {
     this(null);
   }
 
-  public InvocationCounterChaining(final MethodInvocationHandler invocationHandler) {
+  public InvocationCounter(final MethodInvocationHandler invocationHandler) {
     super(invocationHandler);
     this.callCount = 0;
   }
 
   @Override
-  protected boolean execute(final Invocation invocation) {
+  protected boolean execute(final InvocationContext invocationContext) {
     this.callCount++;
     return true;
   }

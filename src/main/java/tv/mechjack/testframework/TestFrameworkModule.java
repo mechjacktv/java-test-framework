@@ -4,7 +4,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 import com.google.inject.multibindings.OptionalBinder;
 
-public final class TestFrameworkModule extends AbstractModule {
+final class TestFrameworkModule extends AbstractModule {
 
   private final TestClock testClock;
   private final TestRandom testRandom;

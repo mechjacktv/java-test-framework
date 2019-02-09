@@ -9,6 +9,9 @@ import org.assertj.core.api.SoftAssertions;
 
 /**
  * A utility class that wraps common AssertJ assertion patterns.
+ *
+ * This class is available to be injected via Guice or through the
+ * `TestFrameworkRule`.
  */
 public final class AssertionUtils {
 
