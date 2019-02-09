@@ -54,7 +54,7 @@
         id="org.eclipse.jdt.core.formatter.parentheses_positions_in_switch_statement"
         value="common_lines"/>
     <setting id="org.eclipse.jdt.core.formatter.comment.format_javadoc_comments"
-             value="true"/>
+             value="false"/>
     <setting id="org.eclipse.jdt.core.formatter.indentation.size" value="2"/>
     <setting
         id="org.eclipse.jdt.core.formatter.insert_space_after_postfix_operator"

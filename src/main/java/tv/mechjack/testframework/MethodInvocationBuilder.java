@@ -14,6 +14,6 @@ public interface MethodInvocationBuilder<T> {
    * @param handler the `MethodInvocationHandler`
    * @return the `FakeBuilder` that supplied this `MethodInvocationBuilder`
    */
-  FakeBuilder<T> setMethodInvocationHandler(MethodInvocationHandler handler);
+  FakeBuilder<T> setHandler(MethodInvocationHandler handler);
 
 }

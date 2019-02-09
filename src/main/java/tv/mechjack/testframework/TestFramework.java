@@ -13,7 +13,7 @@ import com.google.inject.Provider;
 
 import org.junit.rules.ExternalResource;
 
-public final class TestFrameworkRule extends ExternalResource {
+public final class TestFramework extends ExternalResource {
 
   public static final int ARBITRARY_COLLECTION_SIZE = 10;
 
@@ -38,6 +38,11 @@ public final class TestFrameworkRule extends ExternalResource {
 
   public final void installModule(final Module module) {
     this.modules.add(module);
+  }
+
+  public final void assertNullPointerException(final Throwable thrown) {
+    this.getInstance(AssertionUtils.class)
+        .assertNullPointerException(thrown);
   }
 
   public final void assertNullPointerException(final Throwable thrown,
@@ -78,16 +83,36 @@ public final class TestFrameworkRule extends ExternalResource {
     return this.getInstance(FakeFactory.class).builder(type);
   }
 
+  public final byte getArbitraryByte() {
+    return this.getInstance(ArbitraryDataGenerator.class).getByte();
+  }
+
   public final byte[] getArbitraryByteArray() {
     return this.getInstance(ArbitraryDataGenerator.class).getByteArray();
   }
 
-  public final Integer getArbitraryInteger() {
+  public final char getArbitraryCharacter() {
+    return this.getInstance(ArbitraryDataGenerator.class).getCharacter();
+  }
+
+  public final double getArbitraryDouble() {
+    return this.getInstance(ArbitraryDataGenerator.class).getDouble();
+  }
+
+  public final float getArbitraryFloat() {
+    return this.getInstance(ArbitraryDataGenerator.class).getFloat();
+  }
+
+  public final int getArbitraryInteger() {
     return this.getInstance(ArbitraryDataGenerator.class).getInteger();
   }
 
-  public final Long getArbitraryLong() {
+  public final long getArbitraryLong() {
     return this.getInstance(ArbitraryDataGenerator.class).getLong();
+  }
+
+  public final short getArbitraryShort() {
+    return this.getInstance(ArbitraryDataGenerator.class).getShort();
   }
 
   public final String getArbitraryString() {

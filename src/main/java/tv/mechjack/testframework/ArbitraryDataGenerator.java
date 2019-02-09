@@ -7,7 +7,54 @@ import java.util.concurrent.atomic.AtomicLong;
  * `ArbitraryDataGenerator` will generate values for your tests that are unique.
  * <p>
  * This class is available to be injected via Guice or through the
- * `TestFrameworkRule`.
+ * `TestFramework`.
+ *
+ * ## Example Use
+ *
+ * ```java
+ * public final class MyServiceUnitTests {
+ *
+ *  {@literal @}Rule
+ *   public final TestFramework testFramework = new TestFramework();
+ *
+ *  {@literal @}Test
+ *   public final void testSomeServiceMethod() {
+ *     final ArbitraryDataGenerator arbitraryDataGenerator =
+ *         this.testFramework.getInstance(testFrameworkRule.class);
+ *     final MyServiceTest subjectUnderTest = new MyServiceTest();
+ *
+ *     final Object result = subjectUnderTest.doSomething(
+ *         arbitraryDataGenerator.getString());
+ *
+ *     Assertions.assertThat(result).isNotNull();
+ *   }
+ *
+ * }
+ * ```
+ *
+ * ## Convenience Methods on `TestFramework`
+ *
+ * This pattern is common enough that there are convenience on
+ * `TestFramework` that wrap the `ArbitraryDataGenerator` instance.
+ *
+ * ```java
+ * public final class MyServiceUnitTests {
+ *
+ *  {@literal @}Rule
+ *   public final TestFramework testFramework = new TestFramework();
+ *
+ *  {@literal @}Test
+ *   public final void testSomeServiceMethod() {
+ *     final MyServiceTest subjectUnderTest = new MyServiceTest();
+ *
+ *     final Object result = subjectUnderTest.doSomething(
+ *         this.testFramework.getArbitraryString());
+ *
+ *     Assertions.assertThat(result).isNotNull();
+ *   }
+ *
+ * }
+ * ```
  */
 public final class ArbitraryDataGenerator {
 
@@ -27,30 +74,12 @@ public final class ArbitraryDataGenerator {
   }
 
   /**
-   * Returns an arbitrary `long` value.
-   *
-   * @return an arbitrary `long` value
-   */
-  public final long getLong() {
-    return this.atomicLong.getAndIncrement();
-  }
-
-  /**
    * Returns an arbitrary `byte[]` value.
    *
    * @return an arbitrary `byte[]` value
    */
   public final byte[] getByteArray() {
     return this.getString().getBytes();
-  }
-
-  /**
-   * Returns an arbitrary `String` value.
-   *
-   * @return an arbitrary `String` valueå
-   */
-  public final String getString() {
-    return String.format("Arbitrary-%d", this.getLong());
   }
 
   /**
@@ -90,12 +119,30 @@ public final class ArbitraryDataGenerator {
   }
 
   /**
+   * Returns an arbitrary `long` value.
+   *
+   * @return an arbitrary `long` value
+   */
+  public final long getLong() {
+    return this.atomicLong.getAndIncrement();
+  }
+
+  /**
    * Returns an arbitrary `short` value.
    *
    * @return an arbitrary `short` value
    */
   public final short getShort() {
     return (short) this.getLong();
+  }
+
+  /**
+   * Returns an arbitrary `String` value.
+   *
+   * @return an arbitrary `String` valueå
+   */
+  public final String getString() {
+    return String.format("Arbitrary-%d", this.getLong());
   }
 
 }

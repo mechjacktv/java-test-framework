@@ -61,7 +61,7 @@ class DefaultFakeBuilder<T> implements FakeBuilder<T> {
     }
 
     @Override
-    public FakeBuilder<T> setMethodInvocationHandler(
+    public FakeBuilder<T> setHandler(
         final MethodInvocationHandler handler) {
       return this.fakeBuilder.addMethodHandler(this.method, handler);
     }

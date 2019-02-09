@@ -6,7 +6,7 @@ import java.lang.reflect.InvocationHandler;
  * An API for creating fake interface implementations used for testing.
  * <p>
  * This class is available to be injected via Guice or through the
- * `TestFrameworkRule`.
+ * `TestFramework`.
  */
 public interface FakeFactory {
 

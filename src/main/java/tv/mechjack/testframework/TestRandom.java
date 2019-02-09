@@ -4,8 +4,9 @@ package tv.mechjack.testframework;
  * A non-random source of "random" values used during unit testing. Real random
  * values and unit tests don't mix. Implementations that require random values
  * should abstract their access behind an interface that can be faked during
- * testing. A test implementation can wrap this class, which will automatically
- * be reset if the test class is also using the `TestFrameworkRule`.
+ * testing. A test implementation can wrap an implementation of this interface,
+ * which will automatically be reset if the test class is using the instance
+ * supplied by the `TestFramework`.
  */
 public interface TestRandom {
 
@@ -129,7 +130,7 @@ public interface TestRandom {
   void setNextValue(long value, long... values);
 
   /**
-   * Resets the `TestRandom` to contain no values.
+   * Resets the `TestRandom` to its initial state.
    */
   void reset();
 

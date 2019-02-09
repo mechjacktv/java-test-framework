@@ -2,6 +2,35 @@ package tv.mechjack.testframework;
 
 /**
  * Captures the argument at the specified index.
+ *
+ * ## Example Use
+ *
+ * ```java
+ * public final class MyServiceUnitTests {
+ *
+ *  {@literal @}Rule
+ *   public final TestFramework testFramework = new TestFramework();
+ *
+ *  {@literal @}Test
+ *   public final void testSomeServiceMethod() {
+ *     final ArgumentCaptor argumentCaptor = new ArgumentCaptor(0);
+ *     final FakeBuilder<MyInterface> fakeBuilder = this.testFramework
+ *         .fakeBuilder(MyInterface.class);
+ *
+ *     fakeBuilder.forMethod("getValue", new Class[] { String.class })
+ *         .setHandler(argumentCaptor);
+ *
+ *     final MyServiceTest subjectUnderTest =
+ *         new MyServiceTest(fakeBuilder.build());
+ *
+ *     final Object result = subjectUnderTest.doSomething(
+ *         arbitraryDataGenerator.getString());
+ *
+ *     Assertions.assertThat(argumentCaptor.getValue()).isNotNull();
+ *   }
+ *
+ * }
+ * ```
  */
 public final class ArgumentCaptor extends ChainingMethodInvocationHandler {
 
@@ -20,7 +49,7 @@ public final class ArgumentCaptor extends ChainingMethodInvocationHandler {
 
   /**
    * Constructs a new `ArgumentCaptor` which captures the argument at the
-   * specified index. The method invocation will be forwarded to the next
+   * specified index before forwarding the method invocation to the
    * `MethodInvocationHandler` provided.
    *
    * @param index the argument index
