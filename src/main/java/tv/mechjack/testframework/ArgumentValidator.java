@@ -7,7 +7,7 @@ import java.util.function.Function;
  * the option to short-circuit passing the call on to the next
  * `MethodInvocationHandler`.
  */
-public class ArgumentValidator extends ChainingMethodInvocationHandler {
+public final class ArgumentValidator extends ChainingMethodInvocationHandler {
 
   private final Function<InvocationContext, Boolean> validator;
   private boolean valid;
@@ -31,7 +31,7 @@ public class ArgumentValidator extends ChainingMethodInvocationHandler {
   }
 
   @Override
-  protected boolean execute(final InvocationContext invocationContext) {
+  protected final boolean execute(final InvocationContext invocationContext) {
     this.valid = this.validator.apply(invocationContext);
     return this.valid;
   }

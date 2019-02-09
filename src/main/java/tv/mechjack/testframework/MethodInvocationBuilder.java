@@ -1,7 +1,19 @@
 package tv.mechjack.testframework;
 
+/**
+ * Supplied by an instance of `FakeBuilder` to set a `MethodInvocationHandler`
+ * for a method on the fake to be created.
+ *
+ * @param <T> The interface type
+ */
 public interface MethodInvocationBuilder<T> {
 
-  FakeBuilder<T> addHandler(MethodInvocationHandler handler);
+  /**
+   * Sets the `MethodInvocationHandler` for a method on the fake to be created.
+   *
+   * @param handler the `MethodInvocationHandler`
+   * @return the `FakeBuilder` that supplied this `MethodInvocationBuilder`
+   */
+  FakeBuilder<T> setMethodInvocationHandler(MethodInvocationHandler handler);
 
 }
