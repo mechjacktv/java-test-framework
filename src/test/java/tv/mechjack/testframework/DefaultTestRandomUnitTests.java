@@ -208,6 +208,20 @@ public class DefaultTestRandomUnitTests {
         expected);
   }
 
+  @Test
+  public final void reset_withValues_resultIsIllegalStateException() {
+    final DefaultTestRandom subjectUnderTest = new DefaultTestRandom();
+    final Long[] values = this.givenAListOfValues(
+        () -> this.testFramework.arbitraryData().getLong())
+        .toArray(new Long[0]);
+    subjectUnderTest.setNextValues(values);
+
+    subjectUnderTest.reset();
+    final Throwable thrown = catchThrowable(subjectUnderTest::nextLong);
+
+    assertThat(thrown).isInstanceOf(IllegalStateException.class);
+  }
+
   private <T> void withEnoughValues_resultIsValuesReturnedInOrder(
       final Consumer<T[]> consumerMethodUnderTest,
       final Supplier<T> supplierMethodUnderTest,
