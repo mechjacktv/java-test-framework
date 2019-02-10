@@ -1,7 +1,8 @@
-package tv.mechjack.testframework;
+package tv.mechjack.testframework.fake;
 
 /**
- * Counts the number of times a method was invoked.
+ * A `MethodInvocationHandler` that counts the number of times a method was
+ * invoked.
  */
 public final class InvocationCounter extends ChainingMethodInvocationHandler {
 

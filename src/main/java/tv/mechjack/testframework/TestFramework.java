@@ -2,8 +2,10 @@ package tv.mechjack.testframework;
 
 import java.lang.reflect.InvocationHandler;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -13,22 +15,36 @@ import com.google.inject.Provider;
 
 import org.junit.rules.ExternalResource;
 
+import tv.mechjack.testframework.fake.FakeBuilder;
+import tv.mechjack.testframework.fake.FakeFactory;
+
 public final class TestFramework extends ExternalResource {
 
-  public static final int ARBITRARY_COLLECTION_SIZE = 10;
+  public static final int ARBITRARY_COLLECTION_SIZE = 20;
 
-  private final Set<Module> modules = new HashSet<>();
-  private final TestClock testClock = new DefaultTestClock();
-  private final TestRandom testRandom = new DefaultTestRandom();
-  private Injector injector = null;
+  private final Supplier<Module> frameworkModuleSupplier;
+  private final Set<Module> registeredModules = new HashSet<>();
+  private Injector injector;
+
+  public TestFramework() {
+    this(Optional.empty());
+  }
+
+  public TestFramework(final Supplier<Module> frameworkModuleSupplier) {
+    this(Optional.of(frameworkModuleSupplier));
+  }
+
+  private TestFramework(
+      final Optional<Supplier<Module>> frameworkModuleSupplier) {
+    this.frameworkModuleSupplier = frameworkModuleSupplier
+        .orElse(DefaultTestFrameworkModule::new);
+    this.injector = null;
+  }
 
   @Override
   protected final void before() {
-    this.modules.clear();
-    this.testClock.reset();
-    this.testRandom.reset();
-    this.installModule(
-        new TestFrameworkModule(this.testClock, this.testRandom));
+    this.registeredModules.clear();
+    this.registerModule(this.frameworkModuleSupplier.get());
   }
 
   @Override
@@ -36,19 +52,8 @@ public final class TestFramework extends ExternalResource {
     this.injector = null;
   }
 
-  public final void installModule(final Module module) {
-    this.modules.add(module);
-  }
-
-  public final void assertNullPointerException(final Throwable thrown) {
-    this.getInstance(AssertionUtils.class)
-        .assertNullPointerException(thrown);
-  }
-
-  public final void assertNullPointerException(final Throwable thrown,
-      final String name) {
-    this.getInstance(AssertionUtils.class)
-        .assertNullPointerException(thrown, name);
+  public final void registerModule(final Module module) {
+    this.registeredModules.add(module);
   }
 
   public final <T> T getInstance(final Class<T> type) {
@@ -57,7 +62,7 @@ public final class TestFramework extends ExternalResource {
 
   private Injector getInjector() {
     if (this.injector == null) {
-      this.injector = Guice.createInjector(this.modules);
+      this.injector = Guice.createInjector(this.registeredModules);
     }
     return this.injector;
   }
@@ -68,7 +73,7 @@ public final class TestFramework extends ExternalResource {
 
   public final void currentTimeDelta(final long delta, final TimeUnit unit,
       final long shift) {
-    this.testClock.currentTimeDelta(unit.toMillis(delta) + shift);
+    this.getInstance(TestClock.class).currentTimeDelta(unit.toMillis(delta) + shift);
   }
 
   public final <T> T fake(Class<T> type) {
@@ -84,39 +89,39 @@ public final class TestFramework extends ExternalResource {
   }
 
   public final byte getArbitraryByte() {
-    return this.getInstance(ArbitraryDataGenerator.class).getByte();
+    return this.getInstance(DefaultArbitraryDataGenerator.class).getByte();
   }
 
   public final byte[] getArbitraryByteArray() {
-    return this.getInstance(ArbitraryDataGenerator.class).getByteArray();
+    return this.getInstance(DefaultArbitraryDataGenerator.class).getByteArray();
   }
 
   public final char getArbitraryCharacter() {
-    return this.getInstance(ArbitraryDataGenerator.class).getCharacter();
+    return this.getInstance(DefaultArbitraryDataGenerator.class).getCharacter();
   }
 
   public final double getArbitraryDouble() {
-    return this.getInstance(ArbitraryDataGenerator.class).getDouble();
+    return this.getInstance(DefaultArbitraryDataGenerator.class).getDouble();
   }
 
   public final float getArbitraryFloat() {
-    return this.getInstance(ArbitraryDataGenerator.class).getFloat();
+    return this.getInstance(DefaultArbitraryDataGenerator.class).getFloat();
   }
 
   public final int getArbitraryInteger() {
-    return this.getInstance(ArbitraryDataGenerator.class).getInteger();
+    return this.getInstance(DefaultArbitraryDataGenerator.class).getInteger();
   }
 
   public final long getArbitraryLong() {
-    return this.getInstance(ArbitraryDataGenerator.class).getLong();
+    return this.getInstance(DefaultArbitraryDataGenerator.class).getLong();
   }
 
   public final short getArbitraryShort() {
-    return this.getInstance(ArbitraryDataGenerator.class).getShort();
+    return this.getInstance(DefaultArbitraryDataGenerator.class).getShort();
   }
 
   public final String getArbitraryString() {
-    return this.getInstance(ArbitraryDataGenerator.class).getString();
+    return this.getInstance(DefaultArbitraryDataGenerator.class).getString();
   }
 
   public final <T> T getInstance(final Key<T> type) {
@@ -132,7 +137,7 @@ public final class TestFramework extends ExternalResource {
   }
 
   public final void nextRandomValue(final Long nextValue) {
-    this.testRandom.setNextValue(nextValue);
+    this.getInstance(TestRandom.class).setNextValue(nextValue);
   }
 
 }

@@ -1,4 +1,4 @@
-package tv.mechjack.testframework;
+package tv.mechjack.testframework.fake;
 
 /**
  * Callback interface for handling method invocations on fakes used during

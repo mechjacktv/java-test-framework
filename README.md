@@ -2,7 +2,7 @@
 
 [![Build Status][travis-badge]][travis-report]
 
-Java Test Framework is a collection of utility classes useful for writing 
+Java Test Framework is a collection of utility classes useful for writing
 unit tests in Java using JUnit 4.
 
 ## License

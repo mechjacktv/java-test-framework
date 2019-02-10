@@ -1,16 +1,20 @@
-package tv.mechjack.testframework;
+package tv.mechjack.testframework.fake;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-class DefaultFakeBuilder<T> implements FakeBuilder<T> {
+import javax.inject.Inject;
+
+public class DefaultFakeBuilder<T> implements FakeBuilder<T> {
 
   private final FakeFactory fakeFactory;
   private final Class<T> type;
   private final Map<Method, MethodInvocationHandler> methodHandlers;
 
-  DefaultFakeBuilder(final FakeFactory fakeFactory, final Class<T> type) {
+  @Inject
+  public DefaultFakeBuilder(final FakeFactory fakeFactory,
+      final Class<T> type) {
     this.fakeFactory = fakeFactory;
     this.type = type;
     this.methodHandlers = new HashMap<>();
@@ -33,13 +37,13 @@ class DefaultFakeBuilder<T> implements FakeBuilder<T> {
 
   @Override
   public T build() {
-    final InstanceInvocationHandler instanceInvocationHandler = new InstanceInvocationHandler();
+    final RoutingInvocationHandler routingInvocationHandler = new RoutingInvocationHandler();
 
     for (final Method method : this.methodHandlers.keySet()) {
-      instanceInvocationHandler
+      routingInvocationHandler
           .addHandler(method, this.methodHandlers.get(method));
     }
-    return this.fakeFactory.fake(this.type, instanceInvocationHandler);
+    return this.fakeFactory.fake(this.type, routingInvocationHandler);
   }
 
   private FakeBuilder<T> addMethodHandler(final Method method,

@@ -1,4 +1,4 @@
-package tv.mechjack.testframework;
+package tv.mechjack.testframework.fake;
 
 /**
  * Supplied by an instance of `FakeBuilder` to set a `MethodInvocationHandler`

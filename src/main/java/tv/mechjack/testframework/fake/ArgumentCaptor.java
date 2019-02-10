@@ -1,7 +1,8 @@
-package tv.mechjack.testframework;
+package tv.mechjack.testframework.fake;
 
 /**
- * Captures the argument at the specified index.
+ * A `MethodInvocationHandler` that captures the argument at the specified
+ * index.
  *
  * ## Example Use
  *
@@ -20,11 +21,9 @@ package tv.mechjack.testframework;
  *     fakeBuilder.forMethod("getValue", new Class[] { String.class })
  *         .setHandler(argumentCaptor);
  *
- *     final MyServiceTest subjectUnderTest =
- *         new MyServiceTest(fakeBuilder.build());
+ *     final MyService subjectUnderTest = new MyService(fakeBuilder.build());
  *
- *     final Object result = subjectUnderTest.doSomething(
- *         arbitraryDataGenerator.getString());
+ *     final Object result = subjectUnderTest.doSomething();
  *
  *     Assertions.assertThat(argumentCaptor.getValue()).isNotNull();
  *   }

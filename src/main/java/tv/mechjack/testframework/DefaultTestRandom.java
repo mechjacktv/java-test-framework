@@ -5,7 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-final class DefaultTestRandom implements TestRandom {
+/**
+ * The default implementation of `TestRandom` used by `TestFramework`.
+ */
+public final class DefaultTestRandom implements TestRandom {
 
   private AtomicInteger nextBooleanIndex = new AtomicInteger(0);
   private List<Boolean> nextBooleans = new ArrayList<>();

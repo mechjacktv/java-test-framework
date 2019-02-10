@@ -1,4 +1,4 @@
-package tv.mechjack.testframework;
+package tv.mechjack.testframework.fake;
 
 /**
  * A `RuntimeException` wrapper around checked `Exception`s that might be thrown

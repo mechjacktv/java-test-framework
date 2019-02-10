@@ -1,5 +1,8 @@
 package tv.mechjack.testframework;
 
+/**
+ * The default implementation of `TestClock` used by `TestFramework`.
+ */
 final class DefaultTestClock implements TestClock {
 
   private Long currentTime = 0L;

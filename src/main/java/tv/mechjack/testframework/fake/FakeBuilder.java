@@ -1,11 +1,11 @@
-package tv.mechjack.testframework;
+package tv.mechjack.testframework.fake;
 
 import java.lang.reflect.Method;
 
 /**
- * A builder for creating fake interface implementations used for testing. You
- * can use this API to register handlers for the methods called during the
- * course of the test.
+ * An API for creating fake interface implementations with fine grained method
+ * invocation handling. You can use this API to register handlers for the
+ * methods called during the course of the test.
  *
  * @param <T> The interface type
  */
@@ -13,9 +13,10 @@ public interface FakeBuilder<T> {
 
   /**
    * Returns a `MethodInvocationBuilder` which is used to register a
-   * `MethodInvocationHandler` for the method that matches the signature provided.
+   * `MethodInvocationHandler` for the method that matches the signature
+   * provided.
    *
-   * @param methodName the method name
+   * @param methodName     the method name
    * @param parameterTypes the method parameter types
    * @return a `MethodInvocationBuilder` used to register a
    * `MethodInvocationHandler`

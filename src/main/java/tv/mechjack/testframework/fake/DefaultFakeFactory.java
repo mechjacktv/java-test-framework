@@ -1,9 +1,9 @@
-package tv.mechjack.testframework;
+package tv.mechjack.testframework.fake;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
-class DefaultFakeFactory implements FakeFactory {
+public class DefaultFakeFactory implements FakeFactory {
 
   @Override
   public <T> FakeBuilder<T> builder(final Class<T> type) {
@@ -11,7 +11,7 @@ class DefaultFakeFactory implements FakeFactory {
   }
 
   public final <T> T fake(final Class<T> type) {
-    return this.fake(type, new InstanceInvocationHandler());
+    return this.fake(type, new RoutingInvocationHandler());
   }
 
   public final <T> T fake(Class<T> type, final InvocationHandler handler) {

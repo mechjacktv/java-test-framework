@@ -1,10 +1,8 @@
 package tv.mechjack.testframework;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 /**
  * A source of test data when the specific value doesn't matter. The
- * `ArbitraryDataGenerator` will generate values for your tests that are unique.
+ * `DefaultArbitraryDataGenerator` will generate values for your tests that are unique.
  * <p>
  * This class is available to be injected via Guice or through the
  * `TestFramework`.
@@ -19,9 +17,9 @@ import java.util.concurrent.atomic.AtomicLong;
  *
  *  {@literal @}Test
  *   public final void testSomeServiceMethod() {
- *     final ArbitraryDataGenerator arbitraryDataGenerator =
+ *     final DefaultArbitraryDataGenerator arbitraryDataGenerator =
  *         this.testFramework.getInstance(testFrameworkRule.class);
- *     final MyServiceTest subjectUnderTest = new MyServiceTest();
+ *     final MyService subjectUnderTest = new MyService();
  *
  *     final Object result = subjectUnderTest.doSomething(
  *         arbitraryDataGenerator.getString());
@@ -35,7 +33,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * ## Convenience Methods on `TestFramework`
  *
  * This pattern is common enough that there are convenience on
- * `TestFramework` that wrap the `ArbitraryDataGenerator` instance.
+ * `TestFramework` that wrap the `DefaultArbitraryDataGenerator` instance.
  *
  * ```java
  * public final class MyServiceUnitTests {
@@ -56,93 +54,69 @@ import java.util.concurrent.atomic.AtomicLong;
  * }
  * ```
  */
-public final class ArbitraryDataGenerator {
-
-  private final AtomicLong atomicLong;
-
-  ArbitraryDataGenerator() {
-    this.atomicLong = new AtomicLong(1);
-  }
+public interface ArbitraryDataGenerator {
 
   /**
    * Returns an arbitrary `byte` value.
    *
    * @return an arbitrary `byte` value
    */
-  public final byte getByte() {
-    return (byte) this.getLong();
-  }
+  byte getByte();
 
   /**
    * Returns an arbitrary `byte[]` value.
    *
    * @return an arbitrary `byte[]` value
    */
-  public final byte[] getByteArray() {
-    return this.getString().getBytes();
-  }
+  byte[] getByteArray();
 
   /**
    * Returns an arbitrary `char` value.
    *
    * @return an arbitrary `char` value
    */
-  public final char getCharacter() {
-    return (char) this.getLong();
-  }
+  char getCharacter();
 
   /**
    * Returns an arbitrary `double` value.
    *
    * @return an arbitrary `double` value
    */
-  public final double getDouble() {
-    return (double) this.getLong();
-  }
+  double getDouble();
 
   /**
    * Returns an arbitrary `float` value.
    *
    * @return an arbitrary `float` value
    */
-  public final float getFloat() {
-    return (float) this.getLong();
-  }
+  float getFloat();
 
   /**
    * Returns an arbitrary `int` value.
    *
    * @return an arbitrary `int` value
    */
-  public final int getInteger() {
-    return (int) this.getLong();
-  }
+  int getInteger();
 
   /**
    * Returns an arbitrary `long` value.
    *
    * @return an arbitrary `long` value
    */
-  public final long getLong() {
-    return this.atomicLong.getAndIncrement();
-  }
+  long getLong();
 
   /**
    * Returns an arbitrary `short` value.
    *
    * @return an arbitrary `short` value
    */
-  public final short getShort() {
-    return (short) this.getLong();
-  }
+  short getShort();
 
   /**
    * Returns an arbitrary `String` value.
    *
    * @return an arbitrary `String` valueå
    */
-  public final String getString() {
-    return String.format("Arbitrary-%d", this.getLong());
-  }
+  String getString();
 
 }

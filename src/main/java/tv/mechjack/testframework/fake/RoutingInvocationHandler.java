@@ -1,11 +1,11 @@
-package tv.mechjack.testframework;
+package tv.mechjack.testframework.fake;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-final class InstanceInvocationHandler implements InvocationHandler {
+final class RoutingInvocationHandler implements InvocationHandler {
 
   private final Map<Method, MethodInvocationHandler> handlers = new HashMap<>();
 

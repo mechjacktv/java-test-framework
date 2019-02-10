@@ -1,8 +1,8 @@
-package tv.mechjack.testframework;
+package tv.mechjack.testframework.fake;
 
 import java.lang.reflect.Method;
 
-class DefaultInvocationContext implements InvocationContext {
+public class DefaultInvocationContext implements InvocationContext {
 
   private final Object fake;
   private final Method method;
