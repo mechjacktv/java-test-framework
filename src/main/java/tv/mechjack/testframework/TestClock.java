@@ -48,7 +48,7 @@ public interface TestClock {
    *
    * @param delta
    */
-  void updateTime(final long delta);
+  void updateTime(final Long delta);
 
   /**
    * Adds (or subtracts if `delta` is negative) the `delta` value to the time
@@ -57,7 +57,7 @@ public interface TestClock {
    * @param delta the change in time
    * @param unit the `TimeUnit` for the change in time
    */
-  void updateTime(long delta, TimeUnit unit);
+  void updateTime(Long delta, TimeUnit unit);
 
   /**
    * Adds (or subtracts if `delta` is negative) the `delta` value to the time
@@ -69,7 +69,7 @@ public interface TestClock {
    * @param unit the `TimeUnit` for the change in time
    * @param shift additional milliseconds applied to the delta
    */
-  void updateTime(long delta, TimeUnit unit, long shift);
+  void updateTime(Long delta, TimeUnit unit, Long shift);
 
   /**
    * Resets the `TestClock` to its initial state.

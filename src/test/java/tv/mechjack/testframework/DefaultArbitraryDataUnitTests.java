@@ -90,7 +90,7 @@ public final class DefaultArbitraryDataUnitTests {
       final T result = supplier.get();
 
       for (final T pastResult : pastResults) {
-        softly.assertThat(comparator.equals(pastResult, result)).isFalse();
+        this.softly.assertThat(comparator.equals(pastResult, result)).isFalse();
       }
       pastResults.add(result);
     }

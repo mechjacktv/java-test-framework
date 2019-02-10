@@ -22,7 +22,7 @@ package tv.mechjack.testframework;
  *     final RandomSource randomSource = new TestRandomSource(testRandom);
  *     final MyService subjectUnderTest = new MyService(randomSource);
 
- *     testRandom.setNextValue(1000L)
+ *     testRandom.setNextValues(1000L)
  *     // additional test code
  *   }
  *
@@ -38,7 +38,7 @@ public interface TestRandom {
    * @return the next supplied `boolean` value
    * @throws IllegalStateException if no next value has been supplied
    */
-  boolean nextBoolean();
+  Boolean nextBoolean();
 
   /**
    * Returns the next supplied `byte` values or throws an `IllegalStateException`
@@ -47,7 +47,7 @@ public interface TestRandom {
    * @return the next supplied `byte` value
    * @throws IllegalStateException if no next value has been supplied
    */
-  byte nextByte();
+  Byte nextByte();
 
   /**
    * Returns the next supplied `byte[]` values or throws an
@@ -65,7 +65,7 @@ public interface TestRandom {
    * @return the next supplied `double` value
    * @throws IllegalStateException if no next value has been supplied
    */
-  double nextDouble();
+  Double nextDouble();
 
   /**
    * Returns the next supplied `float` values or throws an `IllegalStateException`
@@ -74,7 +74,7 @@ public interface TestRandom {
    * @return the next supplied `float` value
    * @throws IllegalStateException if no next value has been supplied
    */
-  float nextFloat();
+  Float nextFloat();
 
   /**
    * Returns the next supplied `integer` values or throws an
@@ -83,7 +83,7 @@ public interface TestRandom {
    * @return the next supplied `integer` value
    * @throws IllegalStateException if no next value has been supplied
    */
-  int nextInteger();
+  Integer nextInteger();
 
   /**
    * Returns the next supplied `long` values or throws an `IllegalStateException`
@@ -92,63 +92,56 @@ public interface TestRandom {
    * @return the next supplied `long` value
    * @throws IllegalStateException if no next value has been supplied
    */
-  long nextLong();
+  Long nextLong();
 
   /**
    * Sets the next one or more `boolean` values.
    *
-   * @param value the next `boolean` value
-   * @param values additional `boolean` values
+   * @param values the next `boolean` values
    */
-  void setNextValue(boolean value, boolean... values);
+  void setNextValues(Boolean... values);
 
   /**
    * Sets the next one or more `byte` values.
    *
-   * @param value the next `byte` value
-   * @param values additional `byte` values
+   * @param values the next `byte` values
    */
-  void setNextValue(byte value, byte... values);
+  void setNextValues(Byte... values);
 
   /**
    * Sets the next one or more `byte[]` values.
    *
-   * @param value the next `byte[]` value
-   * @param values additional `byte[]` values
+   * @param values the next `byte[]` values
    */
-  void setNextValue(byte[] value, byte[]... values);
+  void setNextValues(byte[]... values);
 
   /**
    * Sets the next one or more `double` values.
    *
-   * @param value the next `double` value
-   * @param values additional `double` values
+   * @param values the next `double` values
    */
-  void setNextValue(double value, double... values);
+  void setNextValues(Double... values);
 
   /**
    * Sets the next one or more `float` values.
    *
-   * @param value the next `float` value
-   * @param values additional `float` values
+   * @param values the next `float` values
    */
-  void setNextValue(float value, float... values);
+  void setNextValues(Float... values);
 
   /**
    * Sets the next one or more `int` values.
    *
-   * @param value the next `int` value
-   * @param values additional `int` values
+   * @param values the next `int` values
    */
-  void setNextValue(int value, int... values);
+  void setNextValues(Integer... values);
 
   /**
    * Sets the next one or more `long` values.
    *
-   * @param value the next `long` value
-   * @param values additional `long` values
+   * @param values the next `long` values
    */
-  void setNextValue(long value, long... values);
+  void setNextValues(Long... values);
 
   /**
    * Resets the `TestRandom` to its initial state.

@@ -26,127 +26,108 @@ public final class DefaultTestRandom implements TestRandom {
   private List<Long> nextLongs = new ArrayList<>();
 
   @Override
-  public boolean nextBoolean() {
-    if (nextBooleanIndex.get() >= nextBooleans.size()) {
+  public Boolean nextBoolean() {
+    if (this.nextBooleanIndex.get() >= this.nextBooleans.size()) {
       throw new IllegalStateException(
           String.format("Boolean for index '%d' was not set.",
-              nextBooleanIndex.get()));
+              this.nextBooleanIndex.get()));
     }
-    return nextBooleans.get(nextBooleanIndex.getAndIncrement());
+    return this.nextBooleans.get(this.nextBooleanIndex.getAndIncrement());
   }
 
   @Override
-  public byte nextByte() {
-    if (nextByteIndex.get() >= nextBytes.size()) {
+  public Byte nextByte() {
+    if (this.nextByteIndex.get() >= this.nextBytes.size()) {
       throw new IllegalStateException(
           String.format("Byte for index '%d' was not set.",
-              nextByteIndex.get()));
+              this.nextByteIndex.get()));
     }
-    return nextBytes.get(nextByteIndex.getAndIncrement());
+    return this.nextBytes.get(this.nextByteIndex.getAndIncrement());
   }
 
   @Override
   public byte[] nextByteArray() {
-    if (nextByteArrayIndex.get() >= nextByteArrays.size()) {
+    if (this.nextByteArrayIndex.get() >= this.nextByteArrays.size()) {
       throw new IllegalStateException(
           String.format("ByteArray for index '%d' was not set.",
-              nextByteArrayIndex.get()));
+              this.nextByteArrayIndex.get()));
     }
-    return nextByteArrays.get(nextByteArrayIndex.getAndIncrement());
+    return this.nextByteArrays.get(this.nextByteArrayIndex.getAndIncrement());
   }
 
   @Override
-  public double nextDouble() {
-    if (nextDoubleIndex.get() >= nextDoubles.size()) {
+  public Double nextDouble() {
+    if (this.nextDoubleIndex.get() >= this.nextDoubles.size()) {
       throw new IllegalStateException(
           String.format("Double for index '%d' was not set.",
-              nextDoubleIndex.get()));
+              this.nextDoubleIndex.get()));
     }
-    return nextDoubles.get(nextDoubleIndex.getAndIncrement());
+    return this.nextDoubles.get(this.nextDoubleIndex.getAndIncrement());
   }
 
   @Override
-  public float nextFloat() {
-    if (nextFloatIndex.get() >= nextFloats.size()) {
+  public Float nextFloat() {
+    if (this.nextFloatIndex.get() >= this.nextFloats.size()) {
       throw new IllegalStateException(
           String.format("Float for index '%d' was not set.",
-              nextFloatIndex.get()));
+              this.nextFloatIndex.get()));
     }
-    return nextFloats.get(nextFloatIndex.getAndIncrement());
+    return this.nextFloats.get(this.nextFloatIndex.getAndIncrement());
   }
 
   @Override
-  public int nextInteger() {
-    if (nextIntegerIndex.get() >= nextIntegers.size()) {
+  public Integer nextInteger() {
+    if (this.nextIntegerIndex.get() >= this.nextIntegers.size()) {
       throw new IllegalStateException(
           String.format("Integer for index '%d' was not set.",
-              nextIntegerIndex.get()));
+              this.nextIntegerIndex.get()));
     }
-    return nextIntegers.get(nextIntegerIndex.getAndIncrement());
+    return this.nextIntegers.get(this.nextIntegerIndex.getAndIncrement());
   }
 
   @Override
-  public long nextLong() {
-    if (nextLongIndex.get() >= nextLongs.size()) {
+  public Long nextLong() {
+    if (this.nextLongIndex.get() >= this.nextLongs.size()) {
       throw new IllegalStateException(
           String.format("Long for index '%d' was not set.",
-              nextLongIndex.get()));
+              this.nextLongIndex.get()));
     }
-    return nextLongs.get(nextLongIndex.getAndIncrement());
+    return this.nextLongs.get(this.nextLongIndex.getAndIncrement());
   }
 
   @Override
-  public void setNextValue(final boolean value, final boolean... values) {
-    nextBooleans.add(value);
-    for (final boolean next : values) {
-      nextBooleans.add(next);
-    }
+  public void setNextValues(final Boolean... values) {
+    this.nextBooleans.addAll(Arrays.asList(values));
   }
 
   @Override
-  public void setNextValue(final byte value, final byte... values) {
-    nextBytes.add(value);
-    for (final byte next : values) {
-      nextBytes.add(next);
-    }
+  public void setNextValues(final Byte... values) {
+    this.nextBytes.addAll(Arrays.asList(values));
   }
 
   @Override
-  public void setNextValue(final byte[] value, final byte[]... values) {
-    nextByteArrays.add(value);
-    nextByteArrays.addAll(Arrays.asList(values));
+  public void setNextValues(final byte[]... values) {
+    this.nextByteArrays.addAll(Arrays.asList(values));
   }
 
   @Override
-  public void setNextValue(final double value, final double... values) {
-    nextDoubles.add(value);
-    for (final double next : values) {
-      nextDoubles.add(next);
-    }
+  public void setNextValues(final Double... values) {
+    this.nextDoubles.addAll(Arrays.asList(values));
   }
 
   @Override
-  public void setNextValue(final float value, final float... values) {
-    nextFloats.add(value);
-    for (final float next : values) {
-      nextFloats.add(next);
-    }
+  public void setNextValues(final Float... values) {
+    this.nextFloats.addAll(Arrays.asList(values));
   }
 
   @Override
-  public void setNextValue(final int value, final int... values) {
-    nextIntegers.add(value);
-    for (final int next : values) {
-      nextIntegers.add(next);
-    }
+  public void setNextValues(final Integer... values) {
+    this.nextIntegers.addAll(Arrays.asList(values));
   }
 
   @Override
-  public void setNextValue(final long value, final long... values) {
-    nextLongs.add(value);
-    for (final long next : values) {
-      nextLongs.add(next);
-    }
+  public void setNextValues(final Long... values) {
+    this.nextLongs.addAll(Arrays.asList(values));
   }
 
   @Override
