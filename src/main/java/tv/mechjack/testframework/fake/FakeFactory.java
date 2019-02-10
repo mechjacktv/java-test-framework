@@ -7,6 +7,26 @@ import java.lang.reflect.InvocationHandler;
  *
  * This class is available to be injected via Guice or through the
  * `TestFramework`.
+ *
+ * ## Example Use
+ *
+ * ```java
+ * public final class MyServiceUnitTests {
+ *
+ *  {@literal @}Rule
+ *   public final TestFramework testFramework = new TestFramework();
+ *
+ *  {@literal @}Test
+ *   public final void testSomeServiceMethod() {
+ *     final FakeFactory fakeFactory = this.testFramework.fakeFactory();
+ *     final MyService subjectUnderTest =
+ *         new MyService(fakeFactory.fake(MyInterface.class));
+ *
+ *     // additional test code
+ *   }
+ *
+ * }
+ * ```
  */
 public interface FakeFactory {
 

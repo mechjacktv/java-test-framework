@@ -24,6 +24,11 @@ public class DefaultFakeBuilder<T> implements FakeBuilder<T> {
   }
 
   @Override
+  public MethodInvocationBuilder<T> forMethod(final String methodName) {
+    return this.forMethod(methodName, new Class[] {});
+  }
+
+  @Override
   public MethodInvocationBuilder<T> forMethod(final String methodName,
       final Class<?>... parameterTypes) {
     try {

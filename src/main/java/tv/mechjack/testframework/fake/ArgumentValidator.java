@@ -26,14 +26,11 @@ import java.util.function.Function;
  *     final FakeBuilder<MyInterface> fakeBuilder = this.testFramework
  *         .fakeBuilder(MyInterface.class);
  *
- *     fakeBuilder.forMethod("getValue", new Class[] { String.class })
- *         .setHandler(argumentValidator);
+ *     fakeBuilder.forMethod("doSomething").setHandler(argumentValidator);
  *
  *     final MyService subjectUnderTest = new MyService(fakeBuilder.build());
  *
- *     final Object result = subjectUnderTest.doSomething();
- *
- *     Assertions.assertThat(valid).isTrue();
+ *     // additional test code
  *   }
  *
  * }

@@ -9,8 +9,41 @@ import java.lang.reflect.Method;
  * handler is no-op and will return `null`.
  *
  * @param <T> The interface type
+ *
+ * ## Example Use
+ *
+ * ```java
+ * public final class MyServiceUnitTests {
+ *
+ *  {@literal @}Rule
+ *   public final TestFramework testFramework = new TestFramework();
+ *
+ *  {@literal @}Test
+ *   public final void testSomeServiceMethod() {
+ *     final FakeBuilder<MyInterface> fakeBuilder = this.testFramework
+ *         .fakeBuilder(MyInterface.class);
+ *
+ *     fakeBuilder.forMethod("doSomething").setHandler(new MyHandler());
+ *
+ *     final MyService subjectUnderTest = new MyService(fakeBuilder.build());
+ *
+ *     // additional test code
+ *   }
+ *
+ * }
+ * ```
  */
 public interface FakeBuilder<T> {
+
+  /**
+   * Returns a `MethodInvocationBuilder` which is used to register a
+   * `MethodInvocationHandler` for the method that takes no arguments.
+   *
+   * @param methodName     the method name
+   * @return a `MethodInvocationBuilder` used to register a
+   * `MethodInvocationHandler`
+   */
+  MethodInvocationBuilder<T> forMethod(String methodName);
 
   /**
    * Returns a `MethodInvocationBuilder` which is used to register a

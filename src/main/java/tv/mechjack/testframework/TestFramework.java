@@ -20,6 +20,17 @@ import tv.mechjack.testframework.fake.FakeFactory;
  * JUnit 4 `TestRule` which implements the test framework, acts as an
  * entrance point for framework implementations and provides a number of
  * convenience methods.
+ *
+ * ## Example Use
+ *
+ * ```java
+ * public final class MyServiceUnitTests {
+ *
+ *  {@literal @}Rule
+ *   public final TestFramework testFramework = new TestFramework();
+ *
+ * }
+ * ```
  */
 public final class TestFramework extends ExternalResource {
 

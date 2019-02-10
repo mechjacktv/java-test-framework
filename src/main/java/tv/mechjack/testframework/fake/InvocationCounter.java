@@ -3,6 +3,30 @@ package tv.mechjack.testframework.fake;
 /**
  * A `MethodInvocationHandler` that counts the number of times a method was
  * invoked.
+ *
+ * ## Example Use
+ *
+ * ```java
+ * public final class MyServiceUnitTests {
+ *
+ *  {@literal @}Rule
+ *   public final TestFramework testFramework = new TestFramework();
+ *
+ *  {@literal @}Test
+ *   public final void testSomeServiceMethod() {
+ *     final InvocationCounter invocationCounter = new InvocationCounter();
+ *     final FakeBuilder<MyInterface> fakeBuilder = this.testFramework
+ *         .fakeBuilder(MyInterface.class);
+ *
+ *     fakeBuilder.forMethod("doSomething").setHandler(invocationCounter);
+ *
+ *     final MyService subjectUnderTest = new MyService(fakeBuilder.build());
+ *
+ *     // additional test code
+ *   }
+ *
+ * }
+ * ```
  */
 public final class InvocationCounter extends ChainingMethodInvocationHandler {
 

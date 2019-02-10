@@ -18,14 +18,11 @@ package tv.mechjack.testframework.fake;
  *     final FakeBuilder<MyInterface> fakeBuilder = this.testFramework
  *         .fakeBuilder(MyInterface.class);
  *
- *     fakeBuilder.forMethod("getValue", new Class[] { String.class })
- *         .setHandler(argumentCaptor);
+ *     fakeBuilder.forMethod("doSomething").setHandler(argumentCaptor);
  *
  *     final MyService subjectUnderTest = new MyService(fakeBuilder.build());
  *
- *     final Object result = subjectUnderTest.doSomething();
- *
- *     Assertions.assertThat(argumentCaptor.getValue()).isNotNull();
+ *     // additional test code
  *   }
  *
  * }
