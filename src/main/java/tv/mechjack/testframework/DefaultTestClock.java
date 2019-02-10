@@ -15,17 +15,17 @@ public final class DefaultTestClock implements TestClock {
   }
 
   @Override
-  public final void currentTimeDelta(final long delta) {
-    this.currentTimeDelta(delta, TimeUnit.MILLISECONDS);
+  public final void updateTime(final long delta) {
+    this.updateTime(delta, TimeUnit.MILLISECONDS);
   }
 
   @Override
-  public void currentTimeDelta(final long delta, final TimeUnit unit) {
-    this.currentTimeDelta(delta, unit);
+  public void updateTime(final long delta, final TimeUnit unit) {
+    this.updateTime(delta, unit, 0L);
   }
 
   @Override
-  public void currentTimeDelta(final long delta, final TimeUnit unit,
+  public void updateTime(final long delta, final TimeUnit unit,
       final long shift) {
     this.currentTime += (unit.toMillis(delta) + shift);
   }

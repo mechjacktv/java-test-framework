@@ -17,17 +17,7 @@ public final class DefaultArbitraryData implements
    * incrementing values starting at `1`.
    */
   public DefaultArbitraryData() {
-    this(1L);
-  }
-
-  /**
-   * Constructs a new `DefaultArbitraryData` that generates
-   * incrementing values starting at the value provided.
-   *
-   * @param initialValue the initial starting value
-   */
-  public DefaultArbitraryData(final long initialValue) {
-    this.atomicLong = new AtomicLong(initialValue);
+    this.atomicLong = new AtomicLong(1L);
   }
 
   @Override

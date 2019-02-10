@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
  *     final MyService subjectUnderTest = new MyService(timeSource);
 
  *     // additional test code with current time set to 0
- *     testClock.currentTimeDelta(1000);
+ *     testClock.updateTime(1000);
  *     // additional test code with current time set to 1000
  *   }
  *
@@ -48,7 +48,7 @@ public interface TestClock {
    *
    * @param delta
    */
-  void currentTimeDelta(final long delta);
+  void updateTime(final long delta);
 
   /**
    * Adds (or subtracts if `delta` is negative) the `delta` value to the time
@@ -57,7 +57,7 @@ public interface TestClock {
    * @param delta the change in time
    * @param unit the `TimeUnit` for the change in time
    */
-  void currentTimeDelta(long delta, TimeUnit unit);
+  void updateTime(long delta, TimeUnit unit);
 
   /**
    * Adds (or subtracts if `delta` is negative) the `delta` value to the time
@@ -69,7 +69,7 @@ public interface TestClock {
    * @param unit the `TimeUnit` for the change in time
    * @param shift additional milliseconds applied to the delta
    */
-  void currentTimeDelta(long delta, TimeUnit unit, long shift);
+  void updateTime(long delta, TimeUnit unit, long shift);
 
   /**
    * Resets the `TestClock` to its initial state.
