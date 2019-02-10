@@ -1,9 +1,11 @@
 package tv.mechjack.testframework;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * The default implementation of `TestClock` used by `TestFramework`.
  */
-final class DefaultTestClock implements TestClock {
+public final class DefaultTestClock implements TestClock {
 
   private Long currentTime = 0L;
 
@@ -13,8 +15,19 @@ final class DefaultTestClock implements TestClock {
   }
 
   @Override
-  public final void currentTimeDelta(final long timeDelta) {
-    this.currentTime += timeDelta;
+  public final void currentTimeDelta(final long delta) {
+    this.currentTimeDelta(delta, TimeUnit.MILLISECONDS);
+  }
+
+  @Override
+  public void currentTimeDelta(final long delta, final TimeUnit unit) {
+    this.currentTimeDelta(delta, unit);
+  }
+
+  @Override
+  public void currentTimeDelta(final long delta, final TimeUnit unit,
+      final long shift) {
+    this.currentTime += (unit.toMillis(delta) + shift);
   }
 
   @Override

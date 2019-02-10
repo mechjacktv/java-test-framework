@@ -2,6 +2,9 @@ package tv.mechjack.testframework.fake;
 
 import java.lang.reflect.Method;
 
+/**
+ * The default implementation of `InvocationContext` used by `TestFramework`.
+ */
 public class DefaultInvocationContext implements InvocationContext {
 
   private final Object fake;

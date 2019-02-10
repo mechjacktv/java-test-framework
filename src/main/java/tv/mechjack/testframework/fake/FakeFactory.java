@@ -4,7 +4,7 @@ import java.lang.reflect.InvocationHandler;
 
 /**
  * An API for creating fake interface implementations used for testing.
- * <p>
+ *
  * This class is available to be injected via Guice or through the
  * `TestFramework`.
  */
@@ -14,7 +14,7 @@ public interface FakeFactory {
    * Returns a builder for creating fake interface implementations used for
    * testing.
    *
-   * @param type the inteface to fake
+   * @param type the interface class to fake
    * @param <T> The interface type
    * @return an instance of `FakeBuilder`
    */
@@ -23,7 +23,7 @@ public interface FakeFactory {
   /**
    * Returns a simple fake that returns null for all method calls.
    *
-   * @param type the inteface to fake
+   * @param type the interface `Class` to fake
    * @param <T> The interface type
    * @return a fake implementation of the specified interface
    */
@@ -33,7 +33,7 @@ public interface FakeFactory {
    * Returns a fake that forwards method invocations to the `InvocationHandler`
    * provided.
    *
-   * @param type the inteface to fake
+   * @param type the interface `Class` to fake
    * @param handler the method `InvocationHandler`
    * @param <T> The interface type
    * @return a fake implementation of the specified interface

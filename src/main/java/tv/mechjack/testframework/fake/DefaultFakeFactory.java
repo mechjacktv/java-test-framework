@@ -3,6 +3,9 @@ package tv.mechjack.testframework.fake;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
+/**
+ * The default implementation of `FakeFactory` used by `TestFramework`.
+ */
 public class DefaultFakeFactory implements FakeFactory {
 
   @Override

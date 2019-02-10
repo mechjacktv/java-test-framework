@@ -7,6 +7,27 @@ package tv.mechjack.testframework;
  * testing. A test implementation can wrap an implementation of this interface,
  * which will automatically be reset if the test class is using the instance
  * supplied by the `TestFramework`.
+ *
+ * ## Example Use
+ *
+ * ```java
+ * public final class MyServiceUnitTests {
+ *
+ *  {@literal @}Rule
+ *   public final TestFramework testFramework = new TestFramework();
+ *
+ *  {@literal @}Test
+ *   public final void testSomeServiceMethod() {
+ *     final TestRandom testRandom = this.testFramework.testRandom();
+ *     final RandomSource randomSource = new TestRandomSource(testRandom);
+ *     final MyService subjectUnderTest = new MyService(randomSource);
+
+ *     testRandom.setNextValue(1000L)
+ *     // additional test code
+ *   }
+ *
+ * }
+ * ```
  */
 public interface TestRandom {
 

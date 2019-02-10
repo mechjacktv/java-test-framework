@@ -5,7 +5,8 @@ import java.lang.reflect.Method;
 /**
  * An API for creating fake interface implementations with fine grained method
  * invocation handling. You can use this API to register handlers for the
- * methods called during the course of the test.
+ * methods called during the course of the test. Any method call without a
+ * handler is no-op and will return `null`.
  *
  * @param <T> The interface type
  */

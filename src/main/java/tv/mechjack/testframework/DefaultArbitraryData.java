@@ -3,30 +3,30 @@ package tv.mechjack.testframework;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * The default implementation of `ArbitraryDataGenerator` used by
- * `TestFramework`. `DefaultArbitraryDataGenerator` uses an `AtomicLong` to
+ * The default implementation of `ArbitraryData` used by
+ * `TestFramework`. `DefaultArbitraryData` uses an `AtomicLong` to
  * increment generated values.
  */
-public final class DefaultArbitraryDataGenerator implements
-    ArbitraryDataGenerator {
+public final class DefaultArbitraryData implements
+    ArbitraryData {
 
   private final AtomicLong atomicLong;
 
   /**
-   * Constructs a new `DefaultArbitraryDataGenerator` that generates
+   * Constructs a new `DefaultArbitraryData` that generates
    * incrementing values starting at `1`.
    */
-  public DefaultArbitraryDataGenerator() {
+  public DefaultArbitraryData() {
     this(1L);
   }
 
   /**
-   * Constructs a new `DefaultArbitraryDataGenerator` that generates
+   * Constructs a new `DefaultArbitraryData` that generates
    * incrementing values starting at the value provided.
    *
    * @param initialValue the initial starting value
    */
-  public DefaultArbitraryDataGenerator(final long initialValue) {
+  public DefaultArbitraryData(final long initialValue) {
     this.atomicLong = new AtomicLong(initialValue);
   }
 

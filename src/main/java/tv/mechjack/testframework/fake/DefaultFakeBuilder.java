@@ -6,6 +6,9 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+/**
+ * The default implementation of `FakeBuilder` used by `TestFramework`.
+ */
 public class DefaultFakeBuilder<T> implements FakeBuilder<T> {
 
   private final FakeFactory fakeFactory;

@@ -1,6 +1,6 @@
 package tv.mechjack.testframework;
 
-import static tv.mechjack.testframework.TestFramework.ARBITRARY_COLLECTION_SIZE;
+import static tv.mechjack.testframework.ArbitraryData.ARBITRARY_COLLECTION_SIZE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,21 +11,21 @@ import org.assertj.core.api.JUnitSoftAssertions;
 import org.junit.Rule;
 import org.junit.Test;
 
-public final class DefaultArbitraryDataGeneratorUnitTests {
+public final class DefaultArbitraryDataUnitTests {
 
   @Rule
   public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
 
   @Test
   public final void getByte_whenCalledMultipleTimes_resultIsUniqueValues() {
-    final DefaultArbitraryDataGenerator subjectUnderTest = new DefaultArbitraryDataGenerator();
+    final DefaultArbitraryData subjectUnderTest = new DefaultArbitraryData();
 
     this.assertThatValuesAreUnique(subjectUnderTest::getByte, Byte::equals);
   }
 
   @Test
   public final void getByteArray_whenCalledMultipleTimes_resultIsUniqueValues() {
-    final DefaultArbitraryDataGenerator subjectUnderTest = new DefaultArbitraryDataGenerator();
+    final DefaultArbitraryData subjectUnderTest = new DefaultArbitraryData();
 
     this.assertThatValuesAreUnique(subjectUnderTest::getByteArray,
         Arrays::equals);
@@ -33,7 +33,7 @@ public final class DefaultArbitraryDataGeneratorUnitTests {
 
   @Test
   public final void getCharacter_whenCalledMultipleTimes_resultIsUniqueValues() {
-    final DefaultArbitraryDataGenerator subjectUnderTest = new DefaultArbitraryDataGenerator();
+    final DefaultArbitraryData subjectUnderTest = new DefaultArbitraryData();
 
     this.assertThatValuesAreUnique(subjectUnderTest::getCharacter,
         Character::equals);
@@ -41,21 +41,21 @@ public final class DefaultArbitraryDataGeneratorUnitTests {
 
   @Test
   public final void getDouble_whenCalledMultipleTimes_resultIsUniqueValues() {
-    final DefaultArbitraryDataGenerator subjectUnderTest = new DefaultArbitraryDataGenerator();
+    final DefaultArbitraryData subjectUnderTest = new DefaultArbitraryData();
 
     this.assertThatValuesAreUnique(subjectUnderTest::getDouble, Double::equals);
   }
 
   @Test
   public final void getFloat_whenCalledMultipleTimes_resultIsUniqueValues() {
-    final DefaultArbitraryDataGenerator subjectUnderTest = new DefaultArbitraryDataGenerator();
+    final DefaultArbitraryData subjectUnderTest = new DefaultArbitraryData();
 
     this.assertThatValuesAreUnique(subjectUnderTest::getFloat, Float::equals);
   }
 
   @Test
   public final void getInteger_whenCalledMultipleTimes_resultIsUniqueValues() {
-    final DefaultArbitraryDataGenerator subjectUnderTest = new DefaultArbitraryDataGenerator();
+    final DefaultArbitraryData subjectUnderTest = new DefaultArbitraryData();
 
     this.assertThatValuesAreUnique(subjectUnderTest::getInteger,
         Integer::equals);
@@ -63,21 +63,21 @@ public final class DefaultArbitraryDataGeneratorUnitTests {
 
   @Test
   public final void getLong_whenCalledMultipleTimes_resultIsUniqueValues() {
-    final DefaultArbitraryDataGenerator subjectUnderTest = new DefaultArbitraryDataGenerator();
+    final DefaultArbitraryData subjectUnderTest = new DefaultArbitraryData();
 
     this.assertThatValuesAreUnique(subjectUnderTest::getLong, Long::equals);
   }
 
   @Test
   public final void getShort_whenCalledMultipleTimes_resultIsUniqueValues() {
-    final DefaultArbitraryDataGenerator subjectUnderTest = new DefaultArbitraryDataGenerator();
+    final DefaultArbitraryData subjectUnderTest = new DefaultArbitraryData();
 
     this.assertThatValuesAreUnique(subjectUnderTest::getShort, Short::equals);
   }
 
   @Test
   public final void getString_whenCalledMultipleTimes_resultIsUniqueValues() {
-    final DefaultArbitraryDataGenerator subjectUnderTest = new DefaultArbitraryDataGenerator();
+    final DefaultArbitraryData subjectUnderTest = new DefaultArbitraryData();
 
     this.assertThatValuesAreUnique(subjectUnderTest::getString, String::equals);
   }
