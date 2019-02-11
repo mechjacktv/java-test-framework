@@ -2,13 +2,17 @@ package tv.mechjack.testframework.fake;
 
 import java.lang.reflect.Method;
 
-public class DefaultInvocation implements Invocation {
+/**
+ * The default implementation of `InvocationContext` used by `TestFramework`.
+ */
+public class DefaultInvocationContext implements InvocationContext {
 
   private final Object fake;
   private final Method method;
   private final Object[] arguments;
 
-  public DefaultInvocation(final Object fake, final Method method, final Object[] arguments) {
+  public DefaultInvocationContext(final Object fake, final Method method,
+      final Object[] arguments) {
     this.fake = fake;
     this.method = method;
     this.arguments = arguments;

@@ -27,6 +27,10 @@ version = System.getenv("BUILDVER") != null ? System.getenv("BUILDVER") : "DEVEL
 // }
 check.dependsOn 'jacocoTestReport'
 
+javadoc {
+  title = "Java Test Framework ${project.version} API"
+}
+
 spotless {
   java {
     importOrder 'java', 'javax', 'com', 'org', '', 'tv.mechjack'
@@ -48,4 +52,5 @@ dependencies {
   implementation group: 'com.google.inject', name: 'guice', version: '4.+'
   implementation group: 'junit', name: 'junit', version: '4.+'
   implementation group: 'org.assertj', name: 'assertj-core', version: '3.+'
+  testImplementation group: 'pl.pragmatists', name: 'JUnitParams', version: '1.+'
 }
