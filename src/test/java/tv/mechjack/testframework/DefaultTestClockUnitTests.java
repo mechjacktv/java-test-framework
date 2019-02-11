@@ -23,7 +23,7 @@ public final class DefaultTestClockUnitTests {
 
   @Test
   public final void currentTime_updateTimeInMilliseconds_resultIsUpdatedTime() {
-    final long delta = this.testFramework.arbitraryData().getLong();
+    final int delta = this.testFramework.arbitraryData().getInteger();
     final DefaultTestClock subjectUnderTest = new DefaultTestClock();
 
     subjectUnderTest.updateTime(delta);
