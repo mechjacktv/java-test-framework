@@ -35,7 +35,7 @@ import tv.mechjack.testframework.fake.FakeFactory;
 public final class TestFramework extends ExternalResource {
 
   private final Supplier<Module> moduleSupplier;
-  private final Set<Module> registeredModules = new HashSet<>();
+  private final Set<Module> registeredModules;
   private Injector injector;
 
   /**
@@ -60,6 +60,7 @@ public final class TestFramework extends ExternalResource {
 
   private TestFramework(final Optional<Supplier<Module>> supplier) {
     this.moduleSupplier = supplier.orElse(DefaultTestFrameworkModule::new);
+    this.registeredModules = new HashSet<>();
     this.injector = null;
   }
 

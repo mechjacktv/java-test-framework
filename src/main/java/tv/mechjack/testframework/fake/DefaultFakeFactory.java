@@ -14,7 +14,7 @@ public class DefaultFakeFactory implements FakeFactory {
   }
 
   public final <T> T fake(final Class<T> type) {
-    return this.fake(type, new RoutingInvocationHandler());
+    return this.fake(type, (proxy, method, args) -> null);
   }
 
   public final <T> T fake(Class<T> type, final InvocationHandler handler) {
