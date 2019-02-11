@@ -11,16 +11,9 @@ public abstract class ChainingMethodInvocationHandler
   private final MethodInvocationHandler nextHandler;
 
   /**
-   * Constructs a new `ChainingMethodInvocationHandler` which has no next
-   * `MethodInvocationHandler` to forward to.
-   */
-  public ChainingMethodInvocationHandler() {
-    this(null);
-  }
-
-  /**
    * Constructs a new `ChainingMethodInvocationHandler` which can optionally
-   * forward the method invocation to the `MethodInvocationHandler` provided.
+   * forward the method invocation to the `MethodInvocationHandler` provided
+   * if not `null`.
    *
    * @param nextHandler the next `MethodInvocationHandler` in the chain
    */
